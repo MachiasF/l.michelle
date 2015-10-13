@@ -1,0 +1,167 @@
+body {
+	background: linear-gradient(
+  			rgba(10, 10, 10, .55),
+  			rgba(10, 10, 10, .55)
+  		),
+	url(app/images/studio.jpg) no-repeat center 20% fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+
+
+
+.logo {
+	max-height: 125px;
+	text-align: left;
+/*	position: fixed;*/
+	margin-left: 10%;
+	margin-top: -13.3%;
+	
+	z-index: 100;
+
+}
+.tinted {
+  background: linear-gradient(
+  			rgba(247, 239, 183, 0),
+  			rgba(247, 239, 183, 5)
+  		),
+  		url(app/images/header.png);
+}
+header{
+	position: absolute;
+	top: 1;
+	left: 0;
+	min-width: 100%;
+	z-index: 50;
+}
+div.flex {
+	display: flex;
+	border: 2px solid pink;
+	max-height: 5%;
+	max-width: 100%;
+	text-align: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.flexHeader1 {
+	flex: .5;
+	padding-top: .2%;
+	padding-bottom: .2%;
+}
+.flexHeader1One {
+	flex: 1;
+	padding-top: .2%;
+	padding-bottom: .2%;
+	text-align: right;
+}
+.flexHeader2 {
+	flex: 2;
+}
+.flexHeader2One {
+	flex: 1;
+	padding-top: .7%;
+	padding-bottom: .7%;
+}
+.flexHeader3 {
+	flex: 3;
+	max-height: 30px;
+}
+.flexHeader3One {
+	flex: 3;
+	max-height: 30px;
+	text-align: center;
+	font-family: Papyrus, fantasy;
+	padding-bottom: .1%;
+	padding-top: .1%;
+	padding-left: 8%;
+	font-size: 1.75em;
+}
+.flexHeader4 {
+	flex: 4;
+}
+.myContainer {
+	margin-top: 3%;
+	padding: -100%;
+	min-height: 100%;
+	min-width: 100%;
+}
+.alignment {
+	position: absolute;
+	top: 20%;
+	text-align: center;
+	font-family: Papyrus, fantasy;
+	color: #F7EFB7;
+	text-shadow:
+	   	-1px -1px 0 #000,  
+	    1px -1px 0 #000,
+	    -1px 1px 0 #000,
+	    1px 1px 0 #000;
+	min-width: 99%;
+	max-width:100%;
+	
+}
+.myFooter {
+	position: absolute;
+	bottom: 1px;
+	left: 0;
+	right: 0;
+	min-height: 30px;
+	background: #F7EFB7;
+}
+.chevron {
+	position: absolute;
+	bottom: -25px;
+	left: 45.75%;
+	max-height: 100px;
+	max-width: 100px;
+	z-index: 2;
+	cursor: pointer;
+}
+.footerAlignment {
+	position: absolute;
+	top: 20%;
+	text-align: center;
+	font-family: Papyrus, fantasy;
+	color: #F7EFB7;
+	text-shadow:
+	   	-1px -1px 0 #000,  
+	    1px -1px 0 #000,
+	    -1px 1px 0 #000,
+	    1px 1px 0 #000;
+	min-width: 99%;
+	max-width:100%;
+	color: pink;
+	cursor: pointer;
+	z-index: 6;
+	
+}
+.imageAlignment {
+	display: flex;
+	position: absolute;
+	top: 60%;
+
+	min-width: 99%;
+	max-width:100%;
+	
+}
+.imagesFormat {
+	flex: 2;
+	max-height: 200px;
+	max-width: 300px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border: 2px solid pink;
+}
+
+.portfolio {
+	position: absolute;
+	display: flex;
+	margin-top: 25px;
+	top: 100%;
+	height: 500px;
+	width: 99%;
+}
