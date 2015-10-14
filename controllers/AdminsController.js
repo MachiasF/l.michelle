@@ -29,7 +29,6 @@ module.exports = {
             });
     },
     delete: function(req, res) {
-        console.log(req.params.id);
             Admins.findByIdAndRemove(req.params.id, function(err, result) {
                 if (err) {
                     return res.status(500).send(err);
@@ -37,7 +36,7 @@ module.exports = {
                     res.json(result);
                 }
             });
-    },
+    }
 };
 
   // destroy: function(req, res) {

@@ -18,7 +18,11 @@ var schema = new mongoose.Schema({
 	safetyAnswer3: {
 		type: String,
 		lowercase: true
-	}
+	},
+	client: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User'
+	}]
 });
 
 module.exports = mongoose.model('Admin', schema)

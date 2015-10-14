@@ -20,7 +20,7 @@ module.exports = {
             });
     },
     read: function(req, res) {
-    		Shoots.findById(req.params.id, function(err, result){
+    		Shoots.find({}, function(err, result){
     		 	if (err) {
                   	res.send(err);
                 } else {
@@ -28,10 +28,19 @@ module.exports = {
                 }
             });
     },
-    delete: function(req, res) {
-            Shoots.findByIdAndRemove(req.params.id, req.body, { new: true }, function(err, result) {
+    show: function(req, res) {
+            Shoots.findById(req.params.id, function(err, result){
                 if (err) {
                     res.send(err);
+                } else {
+                    res.json(result);
+                }
+            });
+    },
+    delete: function(req, res) {
+            Shoots.findByIdAndRemove(req.params.id, function(err, result) {
+                if (err) {
+                    res.status(500).send(err);
                 } else {
                     res.json(result);
                 }

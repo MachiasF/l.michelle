@@ -16,23 +16,11 @@ var schema = new mongoose.Schema ({
 		minlength: 8,
 		required: true
 	},
-	safetyAnswer1: {
-		type: String,
-		lowercase: true
-	},
-	safetyAnswer2: {
-		type: String,
-		lowercase: true
-	},
-	safetyAnswer3: {
-		type: String,
-		lowercase: true
-	},
 	phone: {
 		type: Number,
-		maxlength: 12,
+		maxlength: 12
 	},
-	streetAddress: {
+	street: {
 		type: String
 	},
 	city: {
@@ -42,7 +30,8 @@ var schema = new mongoose.Schema ({
 		type: String
 	},
 	zip: {
-		type: Number
+		type: Number,
+		maxlength: 10
 	},
 	shoots: [{
 		type: mongoose.Schema.Types.ObjectId,

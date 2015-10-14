@@ -64,9 +64,15 @@ app.get('/me', function(req, res){
 
 app.post('/users', UsersController.create);
 app.get('/users', UsersController.read);
+app.get('/users/:id', UsersController.show);
 app.put('/users/:id', UsersController.update);
+app.delete('/users/:id', UsersController.delete);
 
 app.post('/shoots', ShootsController.create);
+app.get('/shoots', ShootsController.read);
+app.get('/shoots/:id', ShootsController.show);
+app.put('/shoots/:id', ShootsController.update);
+app.delete('/shoots/:id', ShootsController.delete);
 
 app.post('/admins', AdminsController.create);
 app.get('/admins', AdminsController.read);
