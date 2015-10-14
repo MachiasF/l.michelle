@@ -16,6 +16,18 @@ var schema = new mongoose.Schema ({
 		minlength: 8,
 		required: true
 	},
+	safetyAnswer1: {
+		type: String,
+		lowercase: true
+	},
+	safetyAnswer2: {
+		type: String,
+		lowercase: true
+	},
+	safetyAnswer3: {
+		type: String,
+		lowercase: true
+	},
 	phone: {
 		type: Number,
 		maxlength: 12,
@@ -32,10 +44,10 @@ var schema = new mongoose.Schema ({
 	zip: {
 		type: Number
 	},
-	sessions: {
+	shoots: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Session'
-	}
+		ref: 'Shoot'
+	}]
 });
 
 module.exports = mongoose.model('User', schema);

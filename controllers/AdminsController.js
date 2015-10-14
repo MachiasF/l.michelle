@@ -1,8 +1,8 @@
-var Sessions = require('../models/Sessions');
+var Admins = require('../models/Admin');
 
 module.exports = {
     create: function(req, res) {
-            Sessions.create(req.body, function(err, result) {
+            Admins.create(req.body, function(err, result) {
                 if (err) {
                  	res.send(err);
                 } else {
@@ -11,7 +11,7 @@ module.exports = {
             });
     },
     update: function(req, res) {
-            Sessions.findByIdAndUpdate(req.params.id, req.body, { new: true }, function(err, result) {
+            Admins.findByIdAndUpdate(req.params.id, req.body, { new: true }, function(err, result) {
                 if (err) {
                   	res.send(err);
                 } else {
@@ -20,7 +20,7 @@ module.exports = {
             });
     },
     read: function(req, res) {
-    		Sessions.findById(req.params.id, function(err, result){
+    		Admins.find({}, function(err, result){
     		 	if (err) {
                   	res.send(err);
                 } else {
@@ -29,12 +29,20 @@ module.exports = {
             });
     },
     delete: function(req, res) {
-            Sessions.findByIdAndRemove(req.params.id, req.body, { new: true }, function(err, result) {
+        console.log(req.params.id);
+            Admins.findByIdAndRemove(req.params.id, function(err, result) {
                 if (err) {
-                    res.send(err);
+                    return res.status(500).send(err);
                 } else {
                     res.json(result);
                 }
             });
     },
 };
+
+  // destroy: function(req, res) {
+  //   Book.findByIdAndRemove(req.params.id, function(err, result) {
+  //     if (err) return res.status(500).send(err);
+  //     res.json(result);
+  //   });
+  // }

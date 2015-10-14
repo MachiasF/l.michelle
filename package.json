@@ -1,7 +1,6 @@
 {
   "name": "lmichelle",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,6 +12,19 @@
     "body-parser": "^1.14.1",
     "cors": "^2.7.1",
     "express": "^4.13.3",
-    "mongoose": "^4.1.10"
-  }
+    "express-session": "^1.11.3",
+    "mongoose": "^4.1.11",
+    "passport": "^0.3.0",
+    "passport-facebook": "^2.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MachiasF/lmichelle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MachiasF/lmichelle/issues"
+  },
+  "homepage": "https://github.com/MachiasF/lmichelle#readme",
+  "description": ""
 }
