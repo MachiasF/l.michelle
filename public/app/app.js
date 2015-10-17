@@ -1,26 +1,60 @@
+
 var app = angular.module('myApp', ['ngRoute']);
 
 app.config(function($routeProvider) {
 	$routeProvider
-				.when('/home', {
-					templateUrl: 'app/scripts/home/home.html',
+				.when('/', {
+					templateUrl: 'app/html/home.html',
 					controller: 'homeCtrl'
 				})
 				.when('/admin', {
-					templateUrl: 'app/scripts/admin/admin.html',
+					templateUrl: 'app/html/admin.html',
 					controller: 'adminCtrl'
 				})
-				.when('/portfolio', {
-					templateUrl: 'app/scripts/portfolio/portfolio.html',
-					controller: 'portfolioCtrl'
+				.when('/admin/users/:id', {
+					templateUrl: 'app/html/adminUsers.html',
+					controller: 'adminCtrl',
+					resolve: {
+						userRef: function($route, adminSrvc) {
+							return adminSrvc.routeUser($route.current.params.memberId);
+						},
+					}
 				})
-				.when('/clients', {
-					templateUrl: 'app/scripts/clients/clients.html',
-					controller: 'clientsCtrl'
+				.when('/admin/users/:id/newshoot', {
+					templateUrl: 'app/html/adminShoot.html',
+					controller: 'adminShootCtrl',
+
 				})
-				.when('/clients/:clientId/:sessionId',{
-					templateUrl: 'app/scripts/sessions/sessions.html',
-					controller: 'sessionsCtrl'
+				.when('/users/:id', {
+					templateUrl: 'app/html/users.html',
+					controller: 'usersCtrl', 
+					resolve: {
+						user: isAuthed
+					}
 				})
-				.otherwise('/home')
+				.when('/users/:id/shoots/:id',{
+					templateUrl: 'app/html/shoots.html',
+					controller: 'shootsCtrl'
+				})
+				//.otherwise('/')
+
+
+
+	function isAuthed($http, $location) {
+		$http({
+			method: 'GET',
+			url: '/user'
+		}).then(function(response) {
+			var currentUser = response.data;
+			if (currentUser.admin) {
+				$location.path('#/admin');
+				return;
+			} else {
+				return currentUser
+			}
+		})
+	};
+
 });
+
+
