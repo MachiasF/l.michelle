@@ -34,7 +34,7 @@ passport.use(new FacebookStrategy({
 	clientID: config.accountId,
 	clientSecret: config.authToken,
 	callbackURL: 'http://localhost:3000/auth/facebook/callback',
-	//profileFields:['facebookId', 'displayName', 'email']
+	profileFields:['facebookId', 'displayName', 'email']
 }, function(token, refreshToken, profile, done){
 	// console.log(profile)
 	// return done(null, profile);
@@ -57,6 +57,13 @@ passport.use(new FacebookStrategy({
 }));
 
 
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+	successRedirect: '/me',
+	failureRediect: '/login'
+}), function(req, res){
+	console.log(req.session);
+});
 
 var requireAuth = function(req, res, next) {
 	if (req.isAuthenticated()){
@@ -64,15 +71,6 @@ var requireAuth = function(req, res, next) {
 	}
 	return res.redirect('/login');
 };
-
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-	successRedirect: '/#/user',
-	failureRediect: '/login'
-}), function(req, res){
-	console.log(req.session);
-});
-
 
 app.get('/', requireAuth, function(req,res){
 	return res.sendFile(__dirname + 'public/home.html');
@@ -89,7 +87,7 @@ passport.deserializeUser(function(obj, done){
 	done(null, obj);
 });
 
-app.get('/#/user', function(req, res){
+app.get('/me', function(req, res){
 	res.send(req.user);
 });
 //---------Auth end------------
