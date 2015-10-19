@@ -9,7 +9,7 @@ var session = require('express-session');
 var config = require('./config.js');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
-var User = mongoose.model('User', require('./models/User.js'));
+var User = require('./models/User.js');
 
 
 //-----------controller injection----------
@@ -34,36 +34,51 @@ passport.use(new FacebookStrategy({
 	clientID: config.accountId,
 	clientSecret: config.authToken,
 	callbackURL: 'http://localhost:3000/auth/facebook/callback',
-	profileFields:['facebookId', 'displayName', 'email']
 }, function(token, refreshToken, profile, done){
-	// console.log(profile)
-	// return done(null, profile);
-	User.find({facebookId: profile.id}, function(findErr, foundUser){
-    	if (findErr) return done(findErr, foundUser);
+	User.findOne({'facebookId': profile.id}, function(findErr, foundUser){
+    	if (findErr) return done(findErr, false);
     	if (!foundUser) {
     	    var newUser = {
-    	    	name: profile.displayName, //or whatever facebook/google/twitter/etc calls it on the profile object
-    	    	email: profile.emails[0].value, //or wherever facebook puts in on prifle
-    	    	facebookId: profile.id //or wherever on facebook profile
+    	    	name: profile.displayName, 
+    	    	facebookId: profile.id 
     	    };
     	    User.create(newUser, function(createErr, createdUser){
-    	    	if (createErr) return done(createErr, null);
+    	    	console.log(profile.id, createdUser.admin)
+    	    	if (createdUser.facebookId === 10153634733716444 || createdUser.facebookId === 100000903576348){
+    	    		createdUser.admin = true;
+    	    		createdUser.save();
+    	    	};
+    	    	if (createErr) return done(createErr, false);
     	    	return done(null, createdUser);
     	    })
-    	}
-    	return done(findErr, foundUser);
+    	} else {
+	    	return done(null, foundUser);
+	    }
     })
 
 }));
 
+passport.serializeUser(function(user, done){
+	done(null, user);
+});
+
+passport.deserializeUser(function(obj, done){
+	done(null, obj);
+});
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-	successRedirect: '/me',
+	//successRedirect: '/#/users',
 	failureRediect: '/login'
-}), function(req, res){
-	console.log(req.session);
+	}), function(req, res){
+		if (req.user.admin === true) {
+			res.redirect('/#/admin');
+		} else {
+			res.redirect('/#/users');
+		}
+
 });
+
 
 var requireAuth = function(req, res, next) {
 	if (req.isAuthenticated()){
@@ -79,13 +94,6 @@ app.get('/login', function(req, res) {
 	return res.sendFile(__dirname + 'public/login.html')
 });
 
-passport.serializeUser(function(user, done){
-	done(null, user);
-});
-
-passport.deserializeUser(function(obj, done){
-	done(null, obj);
-});
 
 app.get('/me', function(req, res){
 	res.send(req.user);

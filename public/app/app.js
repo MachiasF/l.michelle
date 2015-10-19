@@ -1,5 +1,5 @@
 
-var app = angular.module('myApp', ['ngRoute']);
+var app = angular.module('myApp', ['ngRoute', 'flow']);
 
 app.config(function($routeProvider) {
 	$routeProvider
@@ -9,30 +9,33 @@ app.config(function($routeProvider) {
 				})
 				.when('/admin', {
 					templateUrl: 'app/html/admin.html',
-					controller: 'adminCtrl'
+					controller: 'adminCtrl',
+					resolve: {
+						user: isAuthed
+					}
 				})
 				.when('/admin/users/:id', {
 					templateUrl: 'app/html/adminUsers.html',
-					controller: 'adminCtrl',
-					resolve: {
-						userRef: function($route, adminSrvc) {
-							return adminSrvc.routeUser($route.current.params.memberId);
-						},
-					}
+					controller: 'adminCtrl'
 				})
 				.when('/admin/users/:id/newshoot', {
 					templateUrl: 'app/html/adminShoot.html',
 					controller: 'adminShootCtrl',
 
 				})
-				.when('/users/:id', {
+
+
+				
+				.when('/users', {
 					templateUrl: 'app/html/users.html',
-					controller: 'usersCtrl', 
+					controller: 'usersCtrl',
 					resolve: {
-						user: isAuthed
-					}
+						user: function(userSrvc) {
+							return userSrvc.getUser();
+						}
+					} 
 				})
-				.when('/users/:id/shoots/:id',{
+				.when('/users/shoots/:id',{
 					templateUrl: 'app/html/shoots.html',
 					controller: 'shootsCtrl'
 				})
@@ -47,7 +50,7 @@ app.config(function($routeProvider) {
 		}).then(function(response) {
 			var currentUser = response.data;
 			if (currentUser.admin) {
-				$location.path('#/admin');
+				$location.path('/admin');
 				return;
 			} else {
 				return currentUser
@@ -56,5 +59,3 @@ app.config(function($routeProvider) {
 	};
 
 });
-
-
