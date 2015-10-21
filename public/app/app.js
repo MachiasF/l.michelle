@@ -1,5 +1,5 @@
 
-var app = angular.module('myApp', ['ngRoute', 'flow']);
+var app = angular.module('myApp', ['ngRoute', 'ngFileUpload']);
 
 app.config(function($routeProvider) {
 	$routeProvider
@@ -14,11 +14,11 @@ app.config(function($routeProvider) {
 						user: isAuthed
 					}
 				})
-				.when('/admin/users/:id', {
+				.when('/admin/users/:name/:id', {
 					templateUrl: 'app/html/adminUsers.html',
 					controller: 'adminCtrl'
 				})
-				.when('/admin/users/:id/newshoot', {
+				.when('/admin/users/:name/:id/newshoot', {
 					templateUrl: 'app/html/adminShoot.html',
 					controller: 'adminShootCtrl',
 
@@ -30,6 +30,7 @@ app.config(function($routeProvider) {
 					templateUrl: 'app/html/users.html',
 					controller: 'usersCtrl',
 					resolve: {
+						user: isAuthed,
 						user: function(userSrvc) {
 							return userSrvc.getUser();
 						}
@@ -49,11 +50,17 @@ app.config(function($routeProvider) {
 			url: '/user'
 		}).then(function(response) {
 			var currentUser = response.data;
-			if (currentUser.admin) {
+			if (currentUser.admin === true) {
 				$location.path('/admin');
 				return;
-			} else {
-				return currentUser
+			} 
+			if (currentUser.facebookId) {
+				$location.path('/users');
+				return;
+			}
+			if (currentUser.admin === undefined){
+				$location.path('/');
+				return;
 			}
 		})
 	};

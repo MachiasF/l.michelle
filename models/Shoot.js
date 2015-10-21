@@ -5,18 +5,18 @@ var schema = new mongoose.Schema ({
 			type: String
 		},
 		createdAt: {
-			type: Date
+			type: String
 		},
 		subject: {
 			type: String
 		},
 		style: {
 			type: String,
-			enum: ['baby', 'birth', 'maternity', 'child', 'wedding', 'personal', 'family', 'boudior']
+			lowercase: true,
+			enum: ['infant', 'maternity', 'child', 'wedding', 'graduation', 'family', 'boudior']
 		},
 		photos: [{
-			data: Buffer,
-			contentType: String
+			data: String
 		}]
 
 

@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('mongoose');
 
+
 //----------facebook auth-----------
 var session = require('express-session');
 var config = require('./config.js');
@@ -11,12 +12,18 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('./models/User.js');
 
+//-----------Amazon S3----------------
+var AWS = require9('aws-sdk');
+
+
+
 
 //-----------controller injection----------
 var AdminsController = require('./controllers/AdminsController');
 var UsersController = require('./controllers/UsersController');
 var ShootsController = require('./controllers/ShootsController');
-
+//----- Amazon S3 Controller---------------
+var ImageController = reqire('./controllers/ImageController')
 
 
 var app = express();
@@ -25,7 +32,7 @@ app.use(express.static('./public'));
 app.use(bodyParser.json());
 app.use(cors());
 
-//------------Auth-------------
+//---------------Auth with Passport-------------
 app.use(session({secret: 'A8382JJSN99SS93112AKDIR626'}));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -66,25 +73,32 @@ passport.deserializeUser(function(obj, done){
 	done(null, obj);
 });
 
+function logout(req, res, next) {
+	req.logout();
+	next();
+}
+
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 	//successRedirect: '/#/users',
-	failureRediect: '/login'
+	failureRediect: '/'
 	}), function(req, res){
 		if (req.user.admin === true) {
 			res.redirect('/#/admin');
 		} else {
 			res.redirect('/#/users');
 		}
-
 });
-
+app.get('/logout', function (req, res) {
+	req.logout();
+	res.redirect('/');
+});
 
 var requireAuth = function(req, res, next) {
 	if (req.isAuthenticated()){
 		return next();
 	}
-	return res.redirect('/login');
+	return res.redirect('/');
 };
 
 app.get('/', requireAuth, function(req,res){
@@ -102,29 +116,34 @@ app.get('/me', function(req, res){
 
 
 
-
 // ------end points-------
+//-------AWS S3------------
+app.get('/images', ImageCtrl.read);
+app.post('/images', ImageCtrl.create);
+
+//----current user EP------
 app.get('/user', function(req, res) {
 	res.send(req.user)
 })
-app.post('/users', UsersController.create);
-app.get('/users', UsersController.read);
-app.get('/users/:id', UsersController.show);
-app.put('/users/:id', UsersController.update);
-app.delete('/users/:id', UsersController.delete);
+//-------user admin EP-------
+app.post('/api/users', UsersController.create);
+app.get('/api/users', UsersController.read);
+app.get('/api/users/:id', UsersController.show);
+app.put('/api/users/:id', UsersController.update);
+app.delete('/api/users/:id', UsersController.delete);
 
-app.post('/shoots', ShootsController.create);
-app.get('/shoots', ShootsController.read);
-app.get('/shoots/:id', ShootsController.show);
-app.put('/shoots/:id', ShootsController.update);
-app.delete('/shoots/:id', ShootsController.delete);
+app.post('/api/shoots', ShootsController.create);
+app.get('/api/shoots', ShootsController.read);
+app.get('/api/shoots/:id', ShootsController.show);
+app.put('/api/shoots/:id', ShootsController.update);
+app.delete('/api/shoots/:id', ShootsController.delete);
 
 
-//------admin--------
-app.get('/admins', UsersController.read);
-app.get('/admins/users/:id', UsersController.show);
-app.delete('/admins/shoots/:id', ShootsController.delete);
-app.post('/admins/newshoot', ShootsController.create);
+//------admin end points--------
+app.get('/api/admins', UsersController.read);
+app.get('/api/admins/users/:id', UsersController.show);
+app.delete('/api/admins/shoots/:id', ShootsController.delete);
+app.post('/api/admins/newshoot', ShootsController.create);
 
 
 

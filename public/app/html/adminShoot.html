@@ -2,21 +2,31 @@
         
     <div class="alignment">
         <h1>admin shoot page</h1>
-        
-    
-      <div flow-init="{target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
-      	<input type="file" flow-btn/>
-    		Input OR Other element as upload button
-    		<span class="btn" flow-btn>Upload File</span>
-
-      		<table>
-        		<tr ng-repeat="file in $flow.files">
-            		<img flow-img="$flow.files[0]" />
-                <td>{{$index+1}}</td>
-            		<td>{{file.name}}</td>
-            		<td>{{file.msg}}</td>
-      		</table>
-  	   </div>  
-    </div>  
+    <div class="form-style-3">
+      <form ng-submit="submit()">
+        <fieldset>
+          <label for="field1"><span>Client Name:</span><div>{{currentUser}}</div></label>
+          <label for="field2"><span>Subject:<span></span></span><input type="text" class="input-field" name="field2" ng-model="subject" /></label>
+          <label for="field3"><span>Style:</span><select name="field3" class="select-field" ng-model="styleOf">
+            <option value="Infant">Infant</option>
+            <option value="Maternity">Maternity</option>
+            <option value="Child">Child</option>
+            <option value="Family">Family</option>
+            <option value="Graduation">Graduation</option>
+            <option value="Wedding">Wedding</option>
+            <option value="Boudior">Boudior</option>
+          </select></label>
+          </fieldset>
+          <fieldset>
+          <div>
+            <label for="field5"><span>Upload Images:</span><input type="file" ngf-select ng-model="files" ngf-multiple="true" accept="image/*"/>
+          </div>
+          <label for="field6"><span>Notes:</span><textarea name="field6" class="textarea-field" ng-model="notes"></textarea></label>
+          <label><span></span><input type="submit" value="Submit" /></label>
+        </fieldset>
+      </form>
+    </div>
+  </div>
 </div>         
+
 

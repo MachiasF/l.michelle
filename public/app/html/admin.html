@@ -1,12 +1,12 @@
 <div class="myContainer">		
 	<div class="alignment">
 		<h1>Admin page</h1>
-		<ul ng-repeat="user in users">
-			<li>
-				<a ng-href="/#/admin/users/{{user._id}}" ng-click="findUser(user)">
+		<div ng-repeat="user in users">
+			
+				<a ng-href="/#/admin/users/{{user.name}}/{{user._id}}" ng-click="findUser(user)">
 					{{::user.name}} {{::user.phone}}
 				</a>
-			</li>
-		</ul>
+			
+		</div>
 	</di>	
 </div>

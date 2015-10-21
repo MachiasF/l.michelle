@@ -3,11 +3,7 @@ body {
   			rgba(10, 10, 10, .55),
   			rgba(10, 10, 10, .55)
   		),
-	url(app/images/studio.jpg) no-repeat center 20% fixed; 
-  	-webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
-  	background-size: cover;
+	
 }
 
 
@@ -16,9 +12,9 @@ body {
 .logo {
 	max-height: 125px;
 	text-align: left;
-/*	position: fixed;*/
-	margin-left: 10%;
-	margin-top: -13.3%;
+	position: absolute;
+	margin-left: -10%;
+	margin-top: -4.1%;
 	
 	z-index: 100;
 
@@ -170,3 +166,81 @@ div.flex {
 	width: 400px;
 	height: 400px;
 }
+
+.form-style-3{
+    max-width: 450px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.form-style-3 label{
+    display:block;
+    margin-bottom: 10px;
+}
+.form-style-3 label > span{
+    float: left;
+    width: 100px;
+    color: black;
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: 1px 1px 1px #fff;
+}
+.form-style-3 fieldset{
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin: 0px 0px 10px 0px;
+    border: 1px solid grey;
+    padding: 20px;
+    background: white;
+    box-shadow: inset 0px 0px 15px lightgrey;
+    -moz-box-shadow: inset 0px 0px 15px lightgrey;
+    -webkit-box-shadow: inset 0px 0px 15px lightgrey;
+}
+
+.form-style-3 textarea{
+    width:250px;
+    height:100px;
+}
+.form-style-3 input[type=text],
+.form-style-3 input[type=date],
+.form-style-3 input[type=file],
+.form-style-3 input[type=number],
+.form-style-3 input[type=search],
+.form-style-3 input[type=time],
+.form-style-3 input[type=url],
+.form-style-3 input[type=email],
+.form-style-3 select, 
+.form-style-3 textarea{
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border: 1px solid grey;
+    outline: none;
+    color: black;
+    padding: 5px 8px 5px 8px;
+    box-shadow: inset 1px 1px 4px lightgrey;
+    -moz-box-shadow: inset 1px 1px 4px lightgrey;
+    -webkit-box-shadow: inset 1px 1px 4px lightgrey;
+    background: white;
+    width:50%;
+}
+.form-style-3  input[type=submit],
+.form-style-3  input[type=button]{
+    background: black;
+    border: 1px solid black;
+    padding: 5px 15px 5px 15px;
+    color: white;
+    box-shadow: inset -1px -1px 3px lightgrey;
+    -moz-box-shadow: inset -1px -1px 3px lightgrey;
+    -webkit-box-shadow: inset -1px -1px 3px lightgrey;
+    border-radius: 3px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;    
+    font-weight: bold;
+}
+.required{
+    color: black;
+    font-weight:normal;
+}
+
+
