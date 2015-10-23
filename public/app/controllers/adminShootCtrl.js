@@ -1,8 +1,8 @@
 var app = angular.module('myApp')
 
-app.controller('adminShootCtrl', function($scope, adminSrvc, Upload, $route){
+app.controller('adminShootCtrl', function($scope, adminSrvc, Upload, $route, $location){
     
-    $scope.currentUser = $route.current.params.name;
+    $scope.currentClient = $route.current.params.name;
     
     var today = new Date();
     var dd = today.getDate();
@@ -13,18 +13,54 @@ app.controller('adminShootCtrl', function($scope, adminSrvc, Upload, $route){
     today = mm+'/'+dd+'/'+yyyy;
 
     $scope.submit = function() {
-        var dataToPost = {
-          client: $scope.currentUser,
-          subjectMatter: $scope.subject,
-          style: $scope.styleOf,
-          notes: $scope.notes,
-          createdAt: today,
-        };
-        var album = $scope.files;
-        adminSrvc.createShootInfo(dataToPost);
-        adminSrvc.createShootImages(album);
-        console.log(dataToPost);
-        console.log($scope.files);
+
+        //---image array posted to S3------
+        var images = $scope.files;
+        var albumArr = [];
+        if (!Array.isArray(images)){
+          images = [images];
+        } 
+
+        
+        images.forEach(function(image) {
+          var reader = new FileReader();
+          reader.onload = function(loadEvent) {
+            var fileBody = reader.result;
+            albumArr.push({ base64: fileBody,  file : {name: image.name, type: image.type} });
+            if (albumArr.length == images.length) {
+              var dataToPost = {
+                client: $route.current.params.id,
+                subjectMatter: $scope.subject,
+                style: $scope.styleOf,
+                notes: $scope.notes,
+                createdAt: today,
+                photos: albumArr
+              };
+              adminSrvc.createShootInfo(dataToPost).then(function(reponse) {
+                $location.path('/admin/users/' + $route.current.params.name + '/' + $route.current.params.id)
+              });
+            }
+          }
+          reader.readAsDataURL(image)
+        })
+        
+        // for (var i = 0; i < images.length; i++) {
+
+        //   var file = images[i];
+        //   var reader = new FileReader();
+        //   reader.onload = function(loadEvent) {
+        //     var fileBody = reader.result;
+        //     albumArr.push(fileBody);
+        //     if (albumArr.length === images.length){
+        //       console.log (albumArr);
+        //     }
+        //   }
+          
+        //   reader.readAsDataURL(file);
+         
+        // }
+
+        //----client info
         
     };
 

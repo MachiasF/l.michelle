@@ -15,9 +15,7 @@ var schema = new mongoose.Schema ({
 			lowercase: true,
 			enum: ['infant', 'maternity', 'child', 'wedding', 'graduation', 'family', 'boudior']
 		},
-		photos: [{
-			data: String
-		}]
+		photos: []
 
 
 });

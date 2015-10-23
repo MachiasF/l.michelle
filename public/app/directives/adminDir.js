@@ -1,7 +1,7 @@
 var app = angular.module('myApp');
 
-app.directive('fileModel', function(){
+app.directive('adminDir', function(){
 		return {
-			template: '<div></div>'
+			template: ""
 		}
 });

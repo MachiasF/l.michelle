@@ -4,6 +4,9 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('mongoose');
 
+var app = express();
+
+
 
 //----------facebook auth-----------
 var session = require('express-session');
@@ -13,24 +16,23 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('./models/User.js');
 
 //-----------Amazon S3----------------
-var AWS = require9('aws-sdk');
-
-
+var AWS = require('aws-sdk');
 
 
 //-----------controller injection----------
 var AdminsController = require('./controllers/AdminsController');
 var UsersController = require('./controllers/UsersController');
 var ShootsController = require('./controllers/ShootsController');
+
 //----- Amazon S3 Controller---------------
-var ImageController = reqire('./controllers/ImageController')
+//var ImageController = require('./controllers/ImageController')
 
-
-var app = express();
 
 app.use(express.static('./public'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cors());
+
 
 //---------------Auth with Passport-------------
 app.use(session({secret: 'A8382JJSN99SS93112AKDIR626'}));
@@ -117,9 +119,10 @@ app.get('/me', function(req, res){
 
 
 // ------end points-------
+
 //-------AWS S3------------
-app.get('/images', ImageCtrl.read);
-app.post('/images', ImageCtrl.create);
+//app.get('/images', ImageCtrl.read);
+//app.post('/images', ImageCtrl.create);
 
 //----current user EP------
 app.get('/user', function(req, res) {

@@ -7,7 +7,7 @@ AWS.config.update({
     region: 'us-west-2'
 });
 
-var s3bucket = new AWS.S3({params: {Bucket: 'devmtn-dm6'}})
+var s3bucket = new AWS.S3({params: {Bucket: 'l.michelle-photography'}})
 
 
 module.exports.uploadToS3 = function(fileObj, callback) {

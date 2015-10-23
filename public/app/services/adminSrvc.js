@@ -24,6 +24,8 @@ app.service('adminSrvc', function($http){
 			}
 		}
 	}
+
+	//---------uploading a photoshoot------------
 	this.createShootInfo = function(obj){
 		return $http({
 			method: 'POST',
@@ -36,22 +38,26 @@ app.service('adminSrvc', function($http){
 			return response.data;
 		});
 	};
-	this.createShootImages = function(arrOfImages) {
-    	for(var i = 0; i < arrOfImages.length; i++) {
+	// this.createShootImages = function(arrOfImages) {
+ //    	for(var i = 0; i < arrOfImages.length; i++) {
+ //    		var file = arrOfImages[i];
+    		
 
-    	}
-    	
-	        var fileObj = {
-	            fileName: fileObj.name,
-	            fileBody: fileBody,
-	            fileType: fileObj.type
-	        }
-	        
-	        return $http({
-	            method: 'POST',
-	            url: '/images',
-	            data: fileObj
-	        });
-	    }    
-    };    
+	//     	var uploadImage = function(fileBody, fileObj) {
+
+	// 	        var fileObj = {
+	// 	            fileName: fileObj.name,
+	// 	            fileBody: fileBody,
+	// 	            fileType: fileObj.type
+	// 	        }
+		        
+	// 	        return $http({
+	// 	            method: 'POST',
+	// 	            url: '/images',
+	// 	            data: fileObj
+	// 	        });    
+	// 	    }
+
+	// 	}    
+ //    };    
 });
