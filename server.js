@@ -131,20 +131,20 @@ app.get('/user', function(req, res) {
 //-------user admin EP-------
 app.post('/api/users', UsersController.create);
 app.get('/api/users', UsersController.read);
-app.get('/api/users/:id', UsersController.show);
+app.get('/api/users/:id', UsersController.showToUser);
 app.put('/api/users/:id', UsersController.update);
 app.delete('/api/users/:id', UsersController.delete);
 
 app.post('/api/shoots', ShootsController.create);
 app.get('/api/shoots', ShootsController.read);
 app.get('/api/shoots/:id', ShootsController.show);
-app.put('/api/shoots/:id', ShootsController.update);
-app.delete('/api/shoots/:id', ShootsController.delete);
+// app.put('/api/shoots/:id', ShootsController.update);
+app.put('/api/shoots/:id', ShootsController.delete);
 
 
 //------admin end points--------
 app.get('/api/admins', UsersController.read);
-app.get('/api/admins/users/:id', UsersController.show);
+app.get('/api/admins/users/:id', UsersController.showToAdmin);
 app.delete('/api/admins/shoots/:id', ShootsController.delete);
 app.post('/api/admins/newshoot', ShootsController.create);
 

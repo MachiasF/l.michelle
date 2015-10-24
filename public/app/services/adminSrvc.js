@@ -1,11 +1,10 @@
 var app = angular.module('myApp');
 
-app.service('adminSrvc', function($http){
-	var rootUrl = "/api/admins"
-	this.getUsers = function (){
+app.service('adminSrvc', function($http){ 
+	this.getClients = function (){
 		return $http({
 			method: 'GET',
-			url: rootUrl
+			url: "/api/admins"
 		}).then(function(response){
 			if (response.status != 200) {
 				return "Error!";
@@ -13,7 +12,7 @@ app.service('adminSrvc', function($http){
 			return response.data;
 		});
 	};
-	var userArray = [this.getUsers()];
+	var userArray = [this.getClients()];
 	this.routeUser = function (user) {
 		for (var i = 0; i < userArray.length; i++){
 			for (_id in userArray[i]) {
@@ -25,7 +24,7 @@ app.service('adminSrvc', function($http){
 		}
 	}
 
-	//---------uploading a photoshoot------------
+	//---------photoshoot web requests------------
 	this.createShootInfo = function(obj){
 		return $http({
 			method: 'POST',
@@ -33,31 +32,36 @@ app.service('adminSrvc', function($http){
 			data: obj
 		}).then(function(response){
 			if (response.status != 200){
-				return "ERROR";
+				return "Error!";
 			}
 			return response.data;
 		});
 	};
-	// this.createShootImages = function(arrOfImages) {
- //    	for(var i = 0; i < arrOfImages.length; i++) {
- //    		var file = arrOfImages[i];
-    		
+	this.getClientsAlbums = function(id) {
+		return $http({
+			method: "GET",
+			url: "/api/admins/users/" + id
+		}).then(function(response){
+			if(response.status != 200){
+				return "Error!";
+			}
+			return response.data;
+		})
+	}
 
-	//     	var uploadImage = function(fileBody, fileObj) {
 
-	// 	        var fileObj = {
-	// 	            fileName: fileObj.name,
-	// 	            fileBody: fileBody,
-	// 	            fileType: fileObj.type
-	// 	        }
-		        
-	// 	        return $http({
-	// 	            method: 'POST',
-	// 	            url: '/images',
-	// 	            data: fileObj
-	// 	        });    
-	// 	    }
-
-	// 	}    
- //    };    
+	this.deleteAlbum = function(id, clientId) {
+		return $http({
+			method: "PUT",
+			url: "/api/shoots/" + id,
+			data: {
+				clientId: clientId
+			}
+		}).then(function(response){
+			if(response.status != 200){
+				return "Error!";
+			}
+			return response.data;
+		})
+	}
 });

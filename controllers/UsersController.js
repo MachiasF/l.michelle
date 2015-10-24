@@ -20,12 +20,26 @@ module.exports = {
                 }
             });
     },
-    show: function(req, res) {
-    		Users.findById(req.params.id, function(err, result){
+    showToAdmin: function(req, res) {
+    		Users.findById(req.params.id).populate({
+                path: 'shoots',
+                select: 'client photos createdAt'
+            }).exec(function(err, result){
     		 	if (err) {
                   	res.send(err);
                 } else {
                   	res.json(result);
+                }
+            });
+    },
+    showToUser: function(req, res) {
+            Users.findById(req.params.id).populate({
+                path: 'shoots',
+            }).exec(function(err, result){
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.json(result);
                 }
             });
     },

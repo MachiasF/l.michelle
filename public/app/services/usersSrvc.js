@@ -1,7 +1,7 @@
 var app = angular.module('myApp');
 
 app.service('userSrvc', function($http){
-	var rootUrl = "/user"
+	var rootUrl = "/users"
 	this.getUser = function (){
 		return $http({
 			method: 'GET',

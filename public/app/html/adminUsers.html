@@ -1,9 +1,16 @@
 <div class="myContainer">
         
     <div class="alignment">
+
         <h1>admin users page</h1>
-        	<a ng-href="/#/admin/users/{{currentUser}}/{{currentId}}/newshoot">upload photos</a>
-    	</div>
-    </div> 
+        <a ng-href="/#/admin">Clientele list</a>
+        {{clients.name}}
+        <div ng-repeat="album in albums" class="alignLeft">
+        	<img src="{{album.image}}" class="thumbnail"/> {{album.date}} <button ng-click="delete(album.id)">Delete Album</button>
+        </div> 
+        <div>
+        	<a ng-href="/#/admin/users/{{currentClient}}/{{currentId}}/newshoot">upload photos</a>
+        </div>
+    </div>
 
 </div>

@@ -12,9 +12,10 @@ app.controller('adminShootCtrl', function($scope, adminSrvc, Upload, $route, $lo
     if(mm<10) { mm='0'+mm }
     today = mm+'/'+dd+'/'+yyyy;
 
+
+    //-------client album upload form-----
     $scope.submit = function() {
 
-        //---image array posted to S3------
         var images = $scope.files;
         var albumArr = [];
         if (!Array.isArray(images)){
@@ -44,23 +45,6 @@ app.controller('adminShootCtrl', function($scope, adminSrvc, Upload, $route, $lo
           reader.readAsDataURL(image)
         })
         
-        // for (var i = 0; i < images.length; i++) {
-
-        //   var file = images[i];
-        //   var reader = new FileReader();
-        //   reader.onload = function(loadEvent) {
-        //     var fileBody = reader.result;
-        //     albumArr.push(fileBody);
-        //     if (albumArr.length === images.length){
-        //       console.log (albumArr);
-        //     }
-        //   }
-          
-        //   reader.readAsDataURL(file);
-         
-        // }
-
-        //----client info
         
     };
 

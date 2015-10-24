@@ -16,7 +16,7 @@ app.config(function($routeProvider) {
 				})
 				.when('/admin/users/:name/:id', {
 					templateUrl: 'app/html/adminUsers.html',
-					controller: 'adminCtrl'
+					controller: 'adminUsersCtrl'
 				})
 				.when('/admin/users/:name/:id/newshoot', {
 					templateUrl: 'app/html/adminShoot.html',

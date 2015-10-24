@@ -12,8 +12,11 @@ module.exports = {
                 // base64
                 // file
                 var buf = new Buffer(photo.base64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+                var getRandomIndexNumber = function() {
+                    return Math.floor(Math.random() * (10000 - 1000)) + 1000;
+                };
                 var photo = {
-                    name: photo.file.name,
+                    name: getRandomIndexNumber() + photo.file.name,
                     body: buf,
                     type: photo.file.type
                 }
@@ -85,7 +88,23 @@ module.exports = {
                 if (err) {
                     res.status(500).send(err);
                 } else {
-                    res.json(result);
+                    User.findById(req.body.clientId, function(err, user){
+                        if (err) {
+                                console.log(err)
+
+                                res.send(err);
+                        } else {
+                            var shootsArr = user.shoots;
+                            var indexNum = shootsArr.indexOf(req.params.id);
+                            if(indexNum >= 0){
+                                shootsArr.splice(indexNum, 1);
+                                user.save();
+                                res.json(result);
+                            } else {
+                                res.send("Error: 123124 - We could not find a photoshoot for that user")
+                            }
+                        }
+                    })
                 }
             });
     },

@@ -1,10 +1,11 @@
 <div class="myContainer">		
 	<div class="alignment">
-		<h1>Admin page</h1>
-		<div ng-repeat="user in users">
-			
-				<a ng-href="/#/admin/users/{{user.name}}/{{user._id}}" ng-click="findUser(user)">
-					{{::user.name}} {{::user.phone}}
+		
+		<h1>Clientele</h1>
+		Search for client: <input type="text" ng-model="search.name"/ placeholder="Enter">
+		<div ng-repeat="client in clients | filter:search">
+				<a ng-href="/#/admin/users/{{::client.name}}/{{::client._id}}" ng-click="findClient(client)">
+					{{::client.name}} {{::client.phone}}{{client.shoots.length}}
 				</a>
 			
 		</div>

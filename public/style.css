@@ -242,5 +242,11 @@ div.flex {
     color: black;
     font-weight:normal;
 }
-
-
+.thumbnail {
+	max-width: 90px;
+	max-height: 90px;
+	margin-left: 100px;
+}
+.alignLeft {
+	float: left;
+}
