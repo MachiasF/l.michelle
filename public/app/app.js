@@ -16,7 +16,7 @@ app.config(function($routeProvider) {
 				})
 				.when('/admin/users/:name/:id', {
 					templateUrl: 'app/html/adminUsers.html',
-					controller: 'adminUsersCtrl'
+					controller: 'adminCtrl'
 				})
 				.when('/admin/users/:name/:id/newshoot', {
 					templateUrl: 'app/html/adminShoot.html',
@@ -36,7 +36,7 @@ app.config(function($routeProvider) {
 						}
 					} 
 				})
-				.when('/users/shoots/:id',{
+				.when('/users/album/:id',{
 					templateUrl: 'app/html/shoots.html',
 					controller: 'shootsCtrl'
 				})

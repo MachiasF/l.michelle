@@ -120,9 +120,7 @@ app.get('/me', function(req, res){
 
 // ------end points-------
 
-//-------AWS S3------------
-//app.get('/images', ImageCtrl.read);
-//app.post('/images', ImageCtrl.create);
+
 
 //----current user EP------
 app.get('/user', function(req, res) {

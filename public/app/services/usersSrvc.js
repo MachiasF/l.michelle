@@ -1,7 +1,7 @@
 var app = angular.module('myApp');
 
 app.service('userSrvc', function($http){
-	var rootUrl = "/users"
+	var rootUrl = "/user"
 	this.getUser = function (){
 		return $http({
 			method: 'GET',
@@ -13,15 +13,38 @@ app.service('userSrvc', function($http){
 			return response.data;
 		});
 	};
-	// var userArray = this.getUser();
-	// this.routeCurrentUser = function (user) {
-	// 	for (var i = 0; i < userArray.length; i++){
-	// 		for (_id in userArray[i]) {
-	// 			if (userArray[i]._id === user){
-	// 				console.log(userArray[i]);
-	// 				return userArray[i];
-	// 			}
-	// 		}
-	// 	}
-	// }
+	this.updateUser = function(profileChanges, userId){
+		return $http({
+			method: 'PUT',
+			url: '/api/users/' + userId,
+			data: profileChanges
+		}).then(function(response){
+			if(response.status != 200){
+				return "Error!"
+			}
+			return response;
+		})
+	};
+	this.getUserAlbums = function(id){
+		return $http({
+			method: 'GET',
+			url: '/api/users/' + id
+		}).then(function(response){
+			if(response.status != 200) {
+				return "Error";
+			}
+			return response.data;
+		});
+	};
+	this.getCurrentAlbum = function(id){
+		return $http({
+			method: 'GET',
+			url: '/api/shoots/' + id
+		}).then(function(response){
+			if(response.status != 200){
+				return "Error";
+			}
+			return response.data;
+		})
+	}
 });

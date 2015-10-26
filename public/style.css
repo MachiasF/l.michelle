@@ -243,8 +243,8 @@ div.flex {
     font-weight:normal;
 }
 .thumbnail {
-	max-width: 90px;
-	max-height: 90px;
+	max-width: 150px;
+	max-height: 150px;
 	margin-left: 100px;
 }
 .alignLeft {

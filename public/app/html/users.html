@@ -2,10 +2,28 @@
         
     <div class="alignment">
         <h1>users page</h1>
-        {{currentUser.name}}
-        <div ng-repeat="photos in shoots">
-        	
-        </div>	
+        {{user.name}}
+        <div ng-repeat="album in userInfo" class="alignLeft">
+        	<a ng-href="/#/users/album/{{album._id}}" ng-click="findAlbum(albumId)">
+        		<img src="{{album.photos[0]}}" class="thumbnail"/>
+        	</a>
+        	{{album.subject}}{{album.createdAt}}
+        </div>
+        <div class="form-style-3">
+	      <form ng-submit="submit()">
+	        <fieldset>
+	          <label for="field1"><span>Client Name:</span><div>{{user.name}}</div></label>
+	          <label for="field2"><span>Email:<span></span></span><input type="text" class="input-field" name="field2" ng-model="email" placeholder="Enter email"/></label>
+	          <label for="field2"><span>Phone:<span></span></span><input type="text" class="input-field" name="field2" ng-model="phone" placeholder="Enter phone"/></label>
+	          <label for="field1"><span>Mailing</span><div>Address</div></label>
+	          <label for="field2"><span>Street:<span></span></span><input type="text" class="input-field" name="field2" ng-model="street" placeholder="Enter street address"/></label>
+	          <label for="field2"><span>City:<span></span></span><input type="text" class="input-field" name="field2" ng-model="city" placeholder="Enter city"/></label>
+	          <label for="field2"><span>State:<span></span></span><input type="text" class="input-field" name="field2" ng-model="state" placeholder="Enter state"/></label>
+	          <label for="field2"><span>Zip:<span></span></span><input type="text" class="input-field" name="field2" ng-model="zip" placeholder="Enter zip"/></label>
+	          <label><span></span><input type="submit" value="Save" /><input type="submit" value="Cancel" /></label>
+	          </fieldset>
+	      </form>
+    	</div>	
     </div> 
                 
 </div>

@@ -34,7 +34,7 @@ module.exports = {
     },
     showToUser: function(req, res) {
             Users.findById(req.params.id).populate({
-                path: 'shoots',
+                path: 'shoots'
             }).exec(function(err, result){
                 if (err) {
                     res.send(err);

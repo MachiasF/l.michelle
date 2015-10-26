@@ -13,21 +13,11 @@ var schema = new mongoose.Schema ({
 		maxlength: 50
 	},
 	phone: {
-		type: Number,
+		type: String,
 		maxlength: 12
 	},
-	street: {
+	address: {
 		type: String
-	},
-	city: {
-		type: String
-	},
-	state: {
-		type: String
-	},
-	zip: {
-		type: Number,
-		maxlength: 10
 	},
 	shoots: [{
 		type: mongoose.Schema.Types.ObjectId,

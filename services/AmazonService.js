@@ -20,3 +20,13 @@ module.exports.uploadToS3 = function(fileObj, callback) {
     }
     s3bucket.upload(params, callback)
 }
+module.exports.deleteFromS3 = function(fileObj, callback) {
+    
+    var params = {
+        Key: fileObj.name,
+        Body: fileObj.body,
+        ContentType: fileObj.type,
+        ACL: 'public-read'
+    }
+    s3bucket.delete(params, callback)
+}
