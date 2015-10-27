@@ -1,7 +1,7 @@
 body {
 	background: linear-gradient(
-  			rgba(10, 10, 10, .55),
-  			rgba(10, 10, 10, .55)
+  			rgba(100, 100, 100, .35),
+  			rgba(100, 100, 100, .35)
   		),
 	
 }
@@ -24,7 +24,7 @@ body {
   			rgba(247, 239, 183, 0),
   			rgba(247, 239, 183, 5)
   		),
-  		url(app/images/header.png);
+  		
 }
 header{
 	position: absolute;
@@ -70,7 +70,7 @@ div.flex {
 	flex: 3;
 	max-height: 30px;
 	text-align: center;
-	font-family: Papyrus, fantasy;
+	font-family: Helvetica;
 	padding-bottom: .1%;
 	padding-top: .1%;
 	padding-left: 8%;
@@ -89,7 +89,7 @@ div.flex {
 	position: absolute;
 	top: 20%;
 	text-align: center;
-	font-family: Papyrus, fantasy;
+	font-family: Helvetica;
 	color: #F7EFB7;
 	text-shadow:
 	   	-1px -1px 0 #000,  
@@ -246,6 +246,11 @@ div.flex {
 	max-width: 150px;
 	max-height: 150px;
 	margin-left: 100px;
+}
+.thumbnailTwo {
+	max-width: 500px;
+	max-height: 500px;
+	margin-left: 50px;
 }
 .alignLeft {
 	float: left;

@@ -5,10 +5,9 @@ app.controller('adminUsersCtrl', function($scope, adminSrvc, $route, $location){
 	$scope.currentId = $route.current.params.id;
 
 
-	$scope.clients = adminSrvc.getClientsAlbums($scope.currentId)
+	var clients = adminSrvc.getClientsAlbums($scope.currentId)
 				.then(function(response){
 					$scope.clients = response;
-					console.log(response);
 					$scope.albums = function(){
 							var shootsArr = $scope.clients.shoots;
 							var thumbnails = [];
@@ -16,6 +15,7 @@ app.controller('adminUsersCtrl', function($scope, adminSrvc, $route, $location){
 								var obj = {
 									id: item._id,
 									image: item.photos[0],
+									images: item.photos,
 									date: item.createdAt
 								};
 								thumbnails.push(obj)
@@ -26,10 +26,15 @@ app.controller('adminUsersCtrl', function($scope, adminSrvc, $route, $location){
 					}();
 				});
 
-	$scope.delete = function (ids) {
+	$scope.delete = function (ids, images) {
 		var id = ids;
-		console.log(id);
-		adminSrvc.deleteAlbum(id, $scope.currentId).then(function(response){
+		var photos = [];
+		for (var i = 0; i < images.length; i++){
+			var newImageName = images[i].substr(58)
+			photos.push(newImageName);
+		}
+		console.log(photos);
+		adminSrvc.deleteAlbum(id, photos, $scope.currentId).then(function(response){
 			adminSrvc.getClientsAlbums($scope.currentId)
 				.then(function(response){
 					$scope.clients = response;

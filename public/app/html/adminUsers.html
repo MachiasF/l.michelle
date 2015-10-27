@@ -6,7 +6,7 @@
         <a ng-href="/#/admin">Clientele list</a>
         {{clients.name}}
         <div ng-repeat="album in albums" class="alignLeft">
-        	<img src="{{album.image}}" class="thumbnail"/> {{album.date}} <button ng-click="delete(album.id)">Delete Album</button>
+        	<img src="{{album.image}}" class="thumbnail"/> {{album.date}} <button ng-click="delete(album.id, album.images)">Delete Album</button>
         </div> 
         <div>
         	<a ng-href="/#/admin/users/{{currentClient}}/{{currentId}}/newshoot">upload photos</a>

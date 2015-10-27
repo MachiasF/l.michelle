@@ -50,12 +50,13 @@ app.service('adminSrvc', function($http){
 	}
 
 
-	this.deleteAlbum = function(id, clientId) {
+	this.deleteAlbum = function(id, images, clientId) {
 		return $http({
 			method: "PUT",
 			url: "/api/shoots/" + id,
 			data: {
-				clientId: clientId
+				clientId: clientId,
+				photos: images
 			}
 		}).then(function(response){
 			if(response.status != 200){

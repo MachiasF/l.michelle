@@ -94,15 +94,30 @@ module.exports = {
 
                                 res.send(err);
                         } else {
-                            var shootsArr = user.shoots;
-                            var indexNum = shootsArr.indexOf(req.params.id);
-                            if(indexNum >= 0){
-                                shootsArr.splice(indexNum, 1);
-                                user.save();
-                                res.json(result);
-                            } else {
-                                res.send("Error: 123124 - We could not find a photoshoot for that user")
+                            console.log(111111, req.body.photos);
+                            var photosReqArray = req.body.photos;
+                            var photosToDeleteFromS3 =  [];
+                            for (var i = 0; i < photosReqArray.length; i++){
+                                photosToDeleteFromS3.push({Key: photosReqArray[i]});
                             }
+                            if (photosToDeleteFromS3.length == photosReqArray.length){
+                                var shootsArr = user.shoots;
+                                var indexNum = shootsArr.indexOf(req.params.id);
+                                if(indexNum >= 0){
+                                    shootsArr.splice(indexNum, 1);
+                                    user.save();
+                                    AWS.deleteFromS3(photosToDeleteFromS3, function(err, result){
+                                        if (err) {
+                                            res.send("failed to delete from s3")
+                                        } else {
+                                            res.json(result);
+                                        }
+                                    })
+                                    
+                                } else {
+                                    res.send("Error: 123124 - We could not find a photoshoot for that user")
+                                }
+                            }    
                         }
                     })
                 }

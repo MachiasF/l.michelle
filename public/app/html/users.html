@@ -1,8 +1,8 @@
 <div class="myContainer">
         
     <div class="alignment">
-        <h1>users page</h1>
-        {{user.name}}
+        <h1>Welcome {{user.name}}</h1>
+        
         <div ng-repeat="album in userInfo" class="alignLeft">
         	<a ng-href="/#/users/album/{{album._id}}" ng-click="findAlbum(albumId)">
         		<img src="{{album.photos[0]}}" class="thumbnail"/>

@@ -5,8 +5,9 @@
 		Search for client: <input type="text" ng-model="search.name"/ placeholder="Enter">
 		<div ng-repeat="client in clients | filter:search">
 				<a ng-href="/#/admin/users/{{::client.name}}/{{::client._id}}" ng-click="findClient(clientId)">
-					{{::client.name}} {{::client.phone}}{{client.shoots.length}}
+					{{::client.name}} 
 				</a>
+					{{::client.phone}} [{{client.shoots.length}}]
 			
 		</div>
 	</di>	

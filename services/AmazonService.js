@@ -17,16 +17,17 @@ module.exports.uploadToS3 = function(fileObj, callback) {
         Body: fileObj.body,
         ContentType: fileObj.type,
         ACL: 'public-read'
-    }
+    };
     s3bucket.upload(params, callback)
 }
 module.exports.deleteFromS3 = function(fileObj, callback) {
     
     var params = {
-        Key: fileObj.name,
-        Body: fileObj.body,
-        ContentType: fileObj.type,
-        ACL: 'public-read'
-    }
-    s3bucket.delete(params, callback)
+        //Bucket: 'l.michelle-photography'
+        Delete: {
+            Objects: fileObj
+        }
+        
+    };
+    s3bucket.deleteObjects(params, callback);
 }
