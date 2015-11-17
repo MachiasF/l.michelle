@@ -149,8 +149,8 @@ app.post('/api/admins/newshoot', ShootsController.create);
 
 
 // Host port and Database port
-var port = 3000;
-var mongoURI = 'mongodb://localhost:27017/lmichelle';
+var port = config.PORT;
+var mongoURI = config.MONGO_URI;
 
 mongoose.set('debug', true);
 mongoose.connect(mongoURI);
