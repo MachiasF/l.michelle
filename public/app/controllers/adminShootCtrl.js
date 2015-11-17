@@ -4,13 +4,7 @@ app.controller('adminShootCtrl', function($scope, adminSrvc, Upload, $route, $lo
     
     $scope.currentClient = $route.current.params.name;
     
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-    if(dd<10) { dd='0'+dd } 
-    if(mm<10) { mm='0'+mm }
-    today = mm+'/'+dd+'/'+yyyy;
+    
 
 
     //-------client album upload form-----
@@ -31,10 +25,9 @@ app.controller('adminShootCtrl', function($scope, adminSrvc, Upload, $route, $lo
             if (albumArr.length == images.length) {
               var dataToPost = {
                 client: $route.current.params.id,
-                subjectMatter: $scope.subject,
+                subject: $scope.subject,
                 style: $scope.styleOf,
                 notes: $scope.notes,
-                createdAt: today,
                 photos: albumArr
               };
               adminSrvc.createShootInfo(dataToPost).then(function(reponse) {
@@ -47,7 +40,7 @@ app.controller('adminShootCtrl', function($scope, adminSrvc, Upload, $route, $lo
         
         
     };
-
+    
   
   
 

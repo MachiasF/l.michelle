@@ -1,16 +1,18 @@
 <div class="myContainer">
         
-    <div class="alignment">
-
-        <h1>admin users page</h1>
-        <a ng-href="/#/admin">Clientele list</a>
-        {{clients.name}}
-        <div ng-repeat="album in albums" class="alignLeft">
-        	<img src="{{album.image}}" class="thumbnail"/> {{album.date}} <button ng-click="delete(album.id, album.images)">Delete Album</button>
-        </div> 
-        <div>
-        	<a ng-href="/#/admin/users/{{currentClient}}/{{currentId}}/newshoot">upload photos</a>
+    <div>
+        <div class="borderBottom">
+            <h1>Client: {{currentClient}}</h1>
+            <a ng-href="/#/admin"><button>Back to Clientele list</button></a>
+            <a ng-href="/#/admin/users/{{currentClient}}/{{currentId}}/newshoot"><button>Create New Album</button></a></br>
         </div>
+        <div class="imageContainer">
+            <div class="adminImage" ng-repeat="album in albums">
+                <button ng-click="delete(album.id, album.images)" style="cursor: pointer">Delete Album</button></br>
+            	<img src="{{album.image}}" class="adminThumbnail"/> </br>Created: {{album.date | date: 'short'}} 
+            </div> 
+        </div>
+        
     </div>
 
 </div>

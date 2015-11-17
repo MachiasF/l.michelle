@@ -6,6 +6,7 @@ app.controller('usersCtrl', function($scope, userSrvc, $route, user){
 
 	$scope.userInfo = userSrvc.getUserAlbums($scope.user._id)
 			.then(function(response){
+				console.log(response);
 				$scope.userInfo = response.shoots;
 
 				
@@ -25,4 +26,5 @@ app.controller('usersCtrl', function($scope, userSrvc, $route, user){
 
 		})
 	}
+	
 });

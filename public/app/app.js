@@ -7,6 +7,7 @@ app.config(function($routeProvider) {
 					templateUrl: 'app/html/home.html',
 					controller: 'homeCtrl'
 				})
+				//---admin pages---
 				.when('/admin', {
 					templateUrl: 'app/html/admin.html',
 					controller: 'adminCtrl',
@@ -24,7 +25,7 @@ app.config(function($routeProvider) {
 
 				})
 
-
+				//------users pages----
 				
 				.when('/users', {
 					templateUrl: 'app/html/users.html',
@@ -65,4 +66,10 @@ app.config(function($routeProvider) {
 		})
 	};
 
+});
+app.run(function($rootScope, $location, $anchorScroll, $route) {
+  //when the route is changed scroll to the proper element.
+  $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+    if($location.hash()) $anchorScroll();  
+  });
 });

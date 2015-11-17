@@ -2,7 +2,6 @@ var Users = require('../models/User');
 
 module.exports = {
     create: function(req, res) {
-            console.log(req.body);
             Users.create(req.body, function(err, result) {
                 if (err) {
                  	res.send(err);

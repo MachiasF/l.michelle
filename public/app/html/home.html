@@ -1,31 +1,47 @@
+<h2 class="quote"><em>"Sometimes, you will never know the true value of a moment until it becomes a memory." -unknown</em></h2>
 
-<div class="myContainer">
-
-    <div class="alignment">
-        <h2><em>"Sometimes,</br>you will never know the true value of a moment</br> until it becomes a memory."</br>-unknown</em></h2>
-    </div> 
-                
+<div class="carouselContainer">
+		<img ng-src="{{background}}" class="animate-show" home-dir/>
 </div>
-<div class="imageAlignment" ng-show="!click">
-	<img class="imagesFormat" src="app/images/{{background}}">
-	<img class="imagesFormat" src="app/images/maternity.jpg">
-	<img class="imagesFormat" src="app/images/birth.jpg">
-	<img class="imagesFormat" src="app/images/child.jpg">
-</div>
-
 <div class="myFooter">
-	<div class="footerAlignment" ng-click="click = !click">
-		Portfolio
+	<div>
+		<div id="portfolio">
+			<a ng-click="scrollTo('portfolio')"><i class="fa fa-chevron-down"></i> <span class="footerText"> Portfolio </span> <i class="fa fa-chevron-down"></i></a>
+		</div>
 	</div>
 </div>
-<div class="portfolio" ng-show="click">
-	<img class="imagesFormat" src="app/images/{{background}}">
-	<img class="imagesFormat" src="app/images/maternity.jpg">
-	<img class="imagesFormat" src="app/images/birth.jpg">
-	<img class="imagesFormat" src="app/images/child.jpg">
-	
-	
-	
-	
-
-</div> 
+<div class="portfolioContainer">
+	<div class="upperPortfolio">
+		<a ng-href="/#/"><h3 class="portfolioTitle">Infant</h3> </br>
+			<img class="upperImage" src="https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/background2.jpg">
+		</a>
+		<a ng-href="/#/"><h3 class="portfolioTitle">Maternity</h3> </br>
+			<img class="upperImage" src="https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/maternity.jpg">
+		</a>
+		<a ng-href="/#/"><h3 class="portfolioTitle">Birth</h3> </br>
+			<img class="upperImage" src="https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/birth.jpg">
+		</a>
+	</div>
+	<div class="lowerPortfolio">
+		<a ng-href="/#/"><h3 class="portfolioTitleLower">Children</h3> </br>
+			<img class="lowerImage" src="https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/child.jpg">
+		</a>
+		<a ng-href="/#/"><h3 class="portfolioTitleLower">Family</h3> </br>
+			<img class="lowerImage" src="https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/family.jpg">
+		</a>
+		<a ng-href="/#/"><h3 class="portfolioTitleLower">Portrait</h3> </br>
+			<img class="lowerImage" src="https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/portrait.jpg">
+		</a>
+		<a ng-href="/#/"><h3 class="portfolioTitleLower">Boudoir</h3> </br>
+			<img class="lowerImage" src="https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/dark.jpg">
+		</a>
+	</div>
+</div>
+<div id="about" class="aboutFooter">
+    <div>
+        <div>
+            <a ng-click="scrollTo('about')"><i class="fa fa-chevron-down"></i> <span class="aboutText"> About </span> <i class="fa fa-chevron-down"></i></a>
+            <p> L. Michelle has been a photographer for the last 5 years, specializing in infant and childrens portraits.</p>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,11 @@
 var app = angular.module('myApp')
 
-app.controller('homeCtrl', function($scope, homeSrvc){
+app.controller('homeCtrl', function($scope, homeSrvc, $location, $anchorScroll){
 	$scope.background = homeSrvc.randomBackground;
-	console.log($scope.background);
 	$scope.click = false;
+
+	$scope.scrollTo = function(id) {
+		$location.hash(id);
+		$anchorScroll();
+	}
 });

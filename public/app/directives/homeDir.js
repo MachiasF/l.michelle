@@ -2,6 +2,12 @@ var app = angular.module('myApp');
 
 app.directive('homeDir', function(){
 		return {
-			template: '<div></div>'
+			restrict: 'A',
+        	link: function($scope, $element, attrs){
+            	$element.addClass("ng-hide-remove");
+            	$element.on('load', function() {
+                	$element.addClass("ng-hide-add");
+            });
+        }
 		}
 });

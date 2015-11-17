@@ -1,14 +1,6 @@
-<div class="myContainer">
         
-    <div class="alignment">
         <h1>Welcome {{user.name}}</h1>
         
-        <div ng-repeat="album in userInfo" class="alignLeft">
-        	<a ng-href="/#/users/album/{{album._id}}" ng-click="findAlbum(albumId)">
-        		<img src="{{album.photos[0]}}" class="thumbnail"/>
-        	</a>
-        	{{album.subject}}{{album.createdAt}}
-        </div>
         <div class="form-style-3">
 	      <form ng-submit="submit()">
 	        <fieldset>
@@ -24,6 +16,15 @@
 	          </fieldset>
 	      </form>
     	</div>	
-    </div> 
+
+        <div class="adminImage"ng-repeat="album in userInfo">
+        	{{album.subject}}
+        	{{album.createdAt | date: 'short'}}
+        	<a ng-href="/#/users/album/{{album._id}}" ng-click="findAlbum(albumId)">
+        		<img src="{{album.photos[0]}}" class="thumbnail"/>
+        	</a>
+        </div>
+        
+   
                 
-</div>
+

@@ -1,7 +1,7 @@
 //-----------server basics---------------
 var express = require('express');
 var bodyParser = require('body-parser');
-var cors = require('cors');
+// var cors = require('cors');
 var mongoose = require('mongoose');
 
 var app = express();
@@ -20,18 +20,15 @@ var AWS = require('aws-sdk');
 
 
 //-----------controller injection----------
-var AdminsController = require('./controllers/AdminsController');
 var UsersController = require('./controllers/UsersController');
 var ShootsController = require('./controllers/ShootsController');
 
-//----- Amazon S3 Controller---------------
-//var ImageController = require('./controllers/ImageController')
 
 
 app.use(express.static('./public'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-app.use(cors());
+// app.use(cors());
 
 
 //---------------Auth with Passport-------------
@@ -53,7 +50,7 @@ passport.use(new FacebookStrategy({
     	    };
     	    User.create(newUser, function(createErr, createdUser){
     	    	console.log(profile.id, createdUser.admin)
-    	    	if (createdUser.facebookId === 10153634733716444 || createdUser.facebookId === 100000903576348){
+    	    	if (createdUser.facebookId === 10153634733716444 || createdUser.facebookId === 12121){
     	    		createdUser.admin = true;
     	    		createdUser.save();
     	    	};
@@ -83,7 +80,7 @@ function logout(req, res, next) {
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 	//successRedirect: '/#/users',
-	failureRediect: '/'
+	failureRedirect: '/'
 	}), function(req, res){
 		if (req.user.admin === true) {
 			res.redirect('/#/admin');

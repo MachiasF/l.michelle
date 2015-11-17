@@ -1,6 +1,6 @@
 var app = angular.module('myApp');
 
-app.service('homeSrvc', function($http, $q){
-	this.backgrounds = ['background1.jpg', 'background2.jpg', 'background3.jpg', 'background4.jpg', 'background5.jpg', 'background6.jpg', 'background7.jpg', 'background8.jpg', 'background9.jpg'];
+app.service('homeSrvc', function($http){
+	this.backgrounds = 	['https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/background1.jpg', 'https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/background2.jpg', 'https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/background3.jpg', 'https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/background4.jpg', 'https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/background5.jpg', 'https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/background6.jpg', 'https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/background7.jpg', 'https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/background8', 'https://s3-us-west-2.amazonaws.com/l.michelle-photography/non-requested/background9.jpg'];
 	this.randomBackground = this.backgrounds[Math.floor(Math.random() * this.backgrounds.length)];
 });

@@ -1,5 +1,5 @@
 var AWS = require('aws-sdk');
-bucketName = process.env.AWS_BUCKET;
+
 
 AWS.config.update({
     accessKeyId: process.env.AWS_ID,
@@ -7,7 +7,7 @@ AWS.config.update({
     region: 'us-west-2'
 });
 
-var s3bucket = new AWS.S3({params: {Bucket: bucketName}})
+var s3bucket = new AWS.S3({params: {Bucket: 'l.michelle-photography'}})
 
 
 module.exports.uploadToS3 = function(fileObj, callback) {
